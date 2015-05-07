@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func configParse(launchOptions: [NSObject: AnyObject]?){
         Parse.enableLocalDatastore()
         Activity.registerSubclass()
+        Group.registerSubclass()
         Parse.setApplicationId(kParseApplicationID, clientKey: kParseClienteKey)
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
     }

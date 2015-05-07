@@ -33,6 +33,7 @@
 		57672A3B5257F13239008E81 /* Pods_GroupHere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupHere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6201041C1AFBE56200E30A84 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Activity.swift; path = Model/Activity.swift; sourceTree = "<group>"; };
 		620104201AFBE83900E30A84 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Group.swift; path = Model/Group.swift; sourceTree = "<group>"; };
+		620104231AFBED2800E30A84 /* Project.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; path = Project.sketch; sourceTree = SOURCE_ROOT; };
 		62F9F2471AFBCCCC00EEE8FF /* GroupHere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupHere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62F9F24B1AFBCCCC00EEE8FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62F9F24C1AFBCCCC00EEE8FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +95,8 @@
 		6201041E1AFBE57500E30A84 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				62F9F2501AFBCCCC00EEE8FF /* Main.storyboard */,
+				62F9F2551AFBCCCC00EEE8FF /* LaunchScreen.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -101,6 +104,7 @@
 		6201041F1AFBE57C00E30A84 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				62F9F24E1AFBCCCC00EEE8FF /* ViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -132,10 +136,6 @@
 				6201041E1AFBE57500E30A84 /* View */,
 				620104171AFBE50C00E30A84 /* Model */,
 				62F9F24C1AFBCCCC00EEE8FF /* AppDelegate.swift */,
-				62F9F24E1AFBCCCC00EEE8FF /* ViewController.swift */,
-				62F9F2501AFBCCCC00EEE8FF /* Main.storyboard */,
-				62F9F2531AFBCCCC00EEE8FF /* Images.xcassets */,
-				62F9F2551AFBCCCC00EEE8FF /* LaunchScreen.xib */,
 				62F9F24A1AFBCCCC00EEE8FF /* Supporting Files */,
 			);
 			path = GroupHere;
@@ -144,6 +144,8 @@
 		62F9F24A1AFBCCCC00EEE8FF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				620104231AFBED2800E30A84 /* Project.sketch */,
+				62F9F2531AFBCCCC00EEE8FF /* Images.xcassets */,
 				62F9F24B1AFBCCCC00EEE8FF /* Info.plist */,
 			);
 			name = "Supporting Files";
