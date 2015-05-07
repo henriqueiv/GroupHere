@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6201041D1AFBE56200E30A84 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6201041C1AFBE56200E30A84 /* Activity.swift */; };
+		620104211AFBE83900E30A84 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620104201AFBE83900E30A84 /* Group.swift */; };
 		62F9F24D1AFBCCCC00EEE8FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F9F24C1AFBCCCC00EEE8FF /* AppDelegate.swift */; };
 		62F9F24F1AFBCCCC00EEE8FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F9F24E1AFBCCCC00EEE8FF /* ViewController.swift */; };
 		62F9F2521AFBCCCC00EEE8FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62F9F2501AFBCCCC00EEE8FF /* Main.storyboard */; };
 		62F9F2541AFBCCCC00EEE8FF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62F9F2531AFBCCCC00EEE8FF /* Images.xcassets */; };
 		62F9F2571AFBCCCC00EEE8FF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62F9F2551AFBCCCC00EEE8FF /* LaunchScreen.xib */; };
 		62F9F2631AFBCCCC00EEE8FF /* GroupHereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F9F2621AFBCCCC00EEE8FF /* GroupHereTests.swift */; };
-		AEA431E68AEFFCF505D338C6 /* libPods-GroupHere.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76316574226128DFE9E1AFCD /* libPods-GroupHere.a */; };
+		FA191A5262BBA056051D2F5E /* Pods_GroupHere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57672A3B5257F13239008E81 /* Pods_GroupHere.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +30,9 @@
 
 /* Begin PBXFileReference section */
 		23F3B3AA1C1155614DA4BADC /* Pods-GroupHere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupHere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupHere/Pods-GroupHere.debug.xcconfig"; sourceTree = "<group>"; };
+		57672A3B5257F13239008E81 /* Pods_GroupHere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupHere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6201041C1AFBE56200E30A84 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Activity.swift; path = Model/Activity.swift; sourceTree = "<group>"; };
+		620104201AFBE83900E30A84 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Group.swift; path = Model/Group.swift; sourceTree = "<group>"; };
 		62F9F2471AFBCCCC00EEE8FF /* GroupHere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupHere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62F9F24B1AFBCCCC00EEE8FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62F9F24C1AFBCCCC00EEE8FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,7 +43,6 @@
 		62F9F25C1AFBCCCC00EEE8FF /* GroupHereTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GroupHereTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		62F9F2611AFBCCCC00EEE8FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62F9F2621AFBCCCC00EEE8FF /* GroupHereTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupHereTests.swift; sourceTree = "<group>"; };
-		76316574226128DFE9E1AFCD /* libPods-GroupHere.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GroupHere.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0BE9283E1C9847535B9832 /* Pods-GroupHere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupHere.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupHere/Pods-GroupHere.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -47,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEA431E68AEFFCF505D338C6 /* libPods-GroupHere.a in Frameworks */,
+				FA191A5262BBA056051D2F5E /* Pods_GroupHere.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,7 +68,7 @@
 		40BDA03CC762FCA1AE61E688 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				76316574226128DFE9E1AFCD /* libPods-GroupHere.a */,
+				57672A3B5257F13239008E81 /* Pods_GroupHere.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -76,6 +80,29 @@
 				8F0BE9283E1C9847535B9832 /* Pods-GroupHere.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		620104171AFBE50C00E30A84 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6201041C1AFBE56200E30A84 /* Activity.swift */,
+				620104201AFBE83900E30A84 /* Group.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6201041E1AFBE57500E30A84 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		6201041F1AFBE57C00E30A84 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		62F9F23E1AFBCCCC00EEE8FF = {
@@ -101,6 +128,9 @@
 		62F9F2491AFBCCCC00EEE8FF /* GroupHere */ = {
 			isa = PBXGroup;
 			children = (
+				6201041F1AFBE57C00E30A84 /* Controller */,
+				6201041E1AFBE57500E30A84 /* View */,
+				620104171AFBE50C00E30A84 /* Model */,
 				62F9F24C1AFBCCCC00EEE8FF /* AppDelegate.swift */,
 				62F9F24E1AFBCCCC00EEE8FF /* ViewController.swift */,
 				62F9F2501AFBCCCC00EEE8FF /* Main.storyboard */,
@@ -148,6 +178,7 @@
 				62F9F2441AFBCCCC00EEE8FF /* Frameworks */,
 				62F9F2451AFBCCCC00EEE8FF /* Resources */,
 				2D724F2E443995DCDADE28DD /* Copy Pods Resources */,
+				3AB26ED60AEB79ABE8D1D7D1 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -249,6 +280,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GroupHere/Pods-GroupHere-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		3AB26ED60AEB79ABE8D1D7D1 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GroupHere/Pods-GroupHere-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		75AA6315C49BF3683134D3F3 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -271,8 +317,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6201041D1AFBE56200E30A84 /* Activity.swift in Sources */,
 				62F9F24F1AFBCCCC00EEE8FF /* ViewController.swift in Sources */,
 				62F9F24D1AFBCCCC00EEE8FF /* AppDelegate.swift in Sources */,
+				620104211AFBE83900E30A84 /* Group.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

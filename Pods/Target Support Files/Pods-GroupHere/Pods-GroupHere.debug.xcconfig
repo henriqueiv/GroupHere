@@ -1,7 +1,8 @@
+FRAMEWORK_SEARCH_PATHS = "$PODS_FRAMEWORK_BUILD_PATH"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Bolts" "${PODS_ROOT}/Headers/Public/Facebook-iOS-SDK" "${PODS_ROOT}/Headers/Public/Facebook-iOS-SDK/FacebookSDK" "${PODS_ROOT}/Headers/Public/Parse" "${PODS_ROOT}/Headers/Public/ParseFacebookUtils"
-LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/Parse" "$(PODS_ROOT)/ParseFacebookUtils"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Bolts" -isystem "${PODS_ROOT}/Headers/Public/Facebook-iOS-SDK" -isystem "${PODS_ROOT}/Headers/Public/Facebook-iOS-SDK/FacebookSDK" -isystem "${PODS_ROOT}/Headers/Public/Parse" -isystem "${PODS_ROOT}/Headers/Public/ParseFacebookUtils"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"Parse" -l"ParseFacebookUtils" -l"Pods-GroupHere-Bolts" -l"Pods-GroupHere-Facebook-iOS-SDK" -l"Pods-GroupHere-Parse" -l"Pods-GroupHere-ParseFacebookUtils" -l"sqlite3" -l"z" -framework "AudioToolbox" -framework "CFNetwork" -framework "CoreGraphics" -framework "CoreLocation" -framework "MobileCoreServices" -framework "QuartzCore" -framework "Security" -framework "StoreKit" -framework "SystemConfiguration" -weak_framework "Accounts" -weak_framework "AudioToolbox" -weak_framework "CoreGraphics" -weak_framework "CoreLocation" -weak_framework "Foundation" -weak_framework "QuartzCore" -weak_framework "Security" -weak_framework "Social" -weak_framework "UIKit"
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_FRAMEWORK_BUILD_PATH/Bolts.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/FacebookSDK.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/Parse.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/ParseFacebookUtils.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -ObjC -framework "Bolts" -framework "FacebookSDK" -framework "Parse" -framework "ParseFacebookUtils"
 OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
+PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-GroupHere
 PODS_ROOT = ${SRCROOT}/Pods
