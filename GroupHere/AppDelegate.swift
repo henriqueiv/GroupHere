@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var homeViewController: ViewController?
 
-
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.configParse(launchOptions)

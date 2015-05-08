@@ -10,6 +10,19 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var level2Button: UIButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let appdelegate = UIApplication.sharedApplication().delegate
+            as! AppDelegate
+        
+        appdelegate.homeViewController = self
+    }
+    
+    func enableLevel2(){
+        level2Button.enabled = true
+    }
 
 }
 

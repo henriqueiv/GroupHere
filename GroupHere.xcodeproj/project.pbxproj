@@ -21,6 +21,7 @@
 		62F9F2631AFBCCCC00EEE8FF /* GroupHereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F9F2621AFBCCCC00EEE8FF /* GroupHereTests.swift */; };
 		D4E64ED21AFD304E00B6F602 /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E64ED11AFD304E00B6F602 /* PurchaseViewController.swift */; };
 		D4E64ED41AFD340000B6F602 /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E64ED31AFD340000B6F602 /* homeViewController.swift */; };
+		D4E64ED61AFD431A00B6F602 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4E64ED51AFD431A00B6F602 /* StoreKit.framework */; };
 		FA191A5262BBA056051D2F5E /* Pods_GroupHere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57672A3B5257F13239008E81 /* Pods_GroupHere.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		8F0BE9283E1C9847535B9832 /* Pods-GroupHere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupHere.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupHere/Pods-GroupHere.release.xcconfig"; sourceTree = "<group>"; };
 		D4E64ED11AFD304E00B6F602 /* PurchaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PurchaseViewController.swift; path = Controller/PurchaseViewController.swift; sourceTree = "<group>"; };
 		D4E64ED31AFD340000B6F602 /* homeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = homeViewController.swift; path = Controller/homeViewController.swift; sourceTree = "<group>"; };
+		D4E64ED51AFD431A00B6F602 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA191A5262BBA056051D2F5E /* Pods_GroupHere.framework in Frameworks */,
+				D4E64ED61AFD431A00B6F602 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +84,7 @@
 		40BDA03CC762FCA1AE61E688 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4E64ED51AFD431A00B6F602 /* StoreKit.framework */,
 				57672A3B5257F13239008E81 /* Pods_GroupHere.framework */,
 			);
 			name = Frameworks;
@@ -246,6 +250,12 @@
 				TargetAttributes = {
 					62F9F2461AFBCCCC00EEE8FF = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = Z83BJJ28JR;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 					62F9F25B1AFBCCCC00EEE8FF = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -484,9 +494,12 @@
 			baseConfigurationReference = 23F3B3AA1C1155614DA4BADC /* Pods-GroupHere.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = GroupHere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -495,9 +508,12 @@
 			baseConfigurationReference = 8F0BE9283E1C9847535B9832 /* Pods-GroupHere.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = GroupHere/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

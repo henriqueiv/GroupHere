@@ -15,6 +15,7 @@ class homeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        level2Button.enabled = false
         
     }
 

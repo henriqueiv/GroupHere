@@ -9,6 +9,7 @@
 import UIKit
 import StoreKit
 
+
 class PurchaseViewController: UIViewController, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     
     
@@ -80,7 +81,8 @@ class PurchaseViewController: UIViewController, SKProductsRequestDelegate, SKPay
     func unlockFeature(){
         let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
-        //appdelegate.homeViewController!.enableLevel2()
+        
+        appdelegate.homeViewController!.enableLevel2()
         buyButton.enabled = false
         productName.text = "Item has been purchased"
     }
