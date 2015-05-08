@@ -17,6 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let kParseApplicationID = "lqRqCuysIlPT580tKDJTnLjoYPQSNFbo728h1nlB"
     let kParseClienteKey = "BcJWH8nwOB9SPD317AKdZ8NUO4z8hfbpnkkIDrPP"
     
+    var homeViewController: ViewController?
+
+
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.configParse(launchOptions)
         return true
