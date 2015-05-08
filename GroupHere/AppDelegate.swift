@@ -19,24 +19,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.configParse(launchOptions)
-        //        let uuid = NSUUID().UUIDString
-        
-        println(Activity.parseClassName())
-        
-        
         return true
     }
     
     func configParse(launchOptions: [NSObject: AnyObject]?){
         Parse.enableLocalDatastore()
-        Activity.registerSubclass()
-        Group.registerSubclass()
+        self.registerSubclasses()
         Parse.setApplicationId(kParseApplicationID, clientKey: kParseClienteKey)
+        PFUser.enableRevocableSessionInBackground()
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
     }
     
-    
-    
-    
+    func registerSubclasses(){
+        Activity.registerSubclass()
+        Group.registerSubclass()
+    }
 }
 

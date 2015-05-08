@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6201041D1AFBE56200E30A84 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6201041C1AFBE56200E30A84 /* Activity.swift */; };
 		620104211AFBE83900E30A84 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620104201AFBE83900E30A84 /* Group.swift */; };
+		62B296AD1AFC019A001B0EBA /* ParseErrorHandlingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B296AC1AFC019A001B0EBA /* ParseErrorHandlingController.swift */; };
 		62C26B491AFBF14B00470B9C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62C26B481AFBF14B00470B9C /* Login.storyboard */; };
 		62C26B4B1AFBF1BE00470B9C /* LoginRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C26B4A1AFBF1BE00470B9C /* LoginRegisterViewController.swift */; };
 		62F9F24D1AFBCCCC00EEE8FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F9F24C1AFBCCCC00EEE8FF /* AppDelegate.swift */; };
@@ -36,6 +37,7 @@
 		6201041C1AFBE56200E30A84 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Activity.swift; path = Model/Activity.swift; sourceTree = "<group>"; };
 		620104201AFBE83900E30A84 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Group.swift; path = Model/Group.swift; sourceTree = "<group>"; };
 		620104231AFBED2800E30A84 /* Project.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; path = Project.sketch; sourceTree = SOURCE_ROOT; };
+		62B296AC1AFC019A001B0EBA /* ParseErrorHandlingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseErrorHandlingController.swift; path = Utils/ParseErrorHandlingController.swift; sourceTree = "<group>"; };
 		62C26B481AFBF14B00470B9C /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = View/Login.storyboard; sourceTree = "<group>"; };
 		62C26B4A1AFBF1BE00470B9C /* LoginRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginRegisterViewController.swift; path = Controller/LoginRegisterViewController.swift; sourceTree = "<group>"; };
 		62F9F2471AFBCCCC00EEE8FF /* GroupHere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupHere.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +117,14 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		62B296AB1AFC0180001B0EBA /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				62B296AC1AFC019A001B0EBA /* ParseErrorHandlingController.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		62F9F23E1AFBCCCC00EEE8FF = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +148,7 @@
 		62F9F2491AFBCCCC00EEE8FF /* GroupHere */ = {
 			isa = PBXGroup;
 			children = (
+				62B296AB1AFC0180001B0EBA /* Utils */,
 				6201041F1AFBE57C00E30A84 /* Controller */,
 				6201041E1AFBE57500E30A84 /* View */,
 				620104171AFBE50C00E30A84 /* Model */,
@@ -331,6 +342,7 @@
 				62F9F24F1AFBCCCC00EEE8FF /* ViewController.swift in Sources */,
 				62F9F24D1AFBCCCC00EEE8FF /* AppDelegate.swift in Sources */,
 				620104211AFBE83900E30A84 /* Group.swift in Sources */,
+				62B296AD1AFC019A001B0EBA /* ParseErrorHandlingController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
