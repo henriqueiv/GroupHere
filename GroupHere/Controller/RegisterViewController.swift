@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import SVProgressHUD
 
-class LoginRegisterViewController: UIViewController {
+class RegisterViewController: UIViewController {
     
     @IBOutlet weak var tfName: UITextField!
     @IBOutlet weak var tfUsername: UITextField!
@@ -45,28 +45,12 @@ class LoginRegisterViewController: UIViewController {
                     SVProgressHUD.dismiss()
                     if error!.code == self.kPFErrorUsernameTaken{
                         SVProgressHUD.showWithStatus("Usuário já cadastrado, realizando login...", maskType: .Gradient)
-                        self.login(user)
+//                        self.login(user)
                     }else{
                         SVProgressHUD.showErrorWithStatus(error?.description, maskType: .Gradient)
                     }
                     println(error)
                 })
-            }
-        }
-    }
-    
-    @IBAction func login(sender: AnyObject) {
-        if !SVProgressHUD.isVisible(){
-            SVProgressHUD.showWithStatus("Logando", maskType: .Gradient)
-        }
-        PFUser.logInWithUsernameInBackground(self.tfUsername.text, password:self.tfPassword.text) {
-            (user: PFUser?, error: NSError?) -> Void in
-            SVProgressHUD.dismiss()
-            if user != nil {
-                SVProgressHUD.showSuccessWithStatus("Logado com sucesso", maskType: .Gradient)
-                self.gotoApp()
-            } else {
-                SVProgressHUD.showErrorWithStatus(error?.description, maskType: .Gradient)
             }
         }
     }

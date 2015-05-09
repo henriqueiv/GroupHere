@@ -10,9 +10,11 @@
 		35EA440E1AFBF3560002CEE9 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA440D1AFBF3560002CEE9 /* HostViewController.swift */; };
 		6201041D1AFBE56200E30A84 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6201041C1AFBE56200E30A84 /* Activity.swift */; };
 		620104211AFBE83900E30A84 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620104201AFBE83900E30A84 /* Group.swift */; };
+		629CA6A71AFE87A100E5E96B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629CA6A61AFE87A100E5E96B /* LoginViewController.swift */; };
+		629CA6AB1AFE89FD00E5E96B /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629CA6AA1AFE89FD00E5E96B /* RoundedImageView.swift */; };
 		62B296AD1AFC019A001B0EBA /* ParseErrorHandlingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B296AC1AFC019A001B0EBA /* ParseErrorHandlingController.swift */; };
 		62C26B491AFBF14B00470B9C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62C26B481AFBF14B00470B9C /* Login.storyboard */; };
-		62C26B4B1AFBF1BE00470B9C /* LoginRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C26B4A1AFBF1BE00470B9C /* LoginRegisterViewController.swift */; };
+		62C26B4B1AFBF1BE00470B9C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C26B4A1AFBF1BE00470B9C /* RegisterViewController.swift */; };
 		62F9F24D1AFBCCCC00EEE8FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F9F24C1AFBCCCC00EEE8FF /* AppDelegate.swift */; };
 		62F9F24F1AFBCCCC00EEE8FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F9F24E1AFBCCCC00EEE8FF /* ViewController.swift */; };
 		62F9F2521AFBCCCC00EEE8FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62F9F2501AFBCCCC00EEE8FF /* Main.storyboard */; };
@@ -42,9 +44,11 @@
 		6201041C1AFBE56200E30A84 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Activity.swift; path = Model/Activity.swift; sourceTree = "<group>"; };
 		620104201AFBE83900E30A84 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Group.swift; path = Model/Group.swift; sourceTree = "<group>"; };
 		620104231AFBED2800E30A84 /* Project.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; path = Project.sketch; sourceTree = SOURCE_ROOT; };
+		629CA6A61AFE87A100E5E96B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Controller/LoginViewController.swift; sourceTree = "<group>"; };
+		629CA6AA1AFE89FD00E5E96B /* RoundedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundedImageView.swift; path = View/RoundedImageView.swift; sourceTree = "<group>"; };
 		62B296AC1AFC019A001B0EBA /* ParseErrorHandlingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseErrorHandlingController.swift; path = Utils/ParseErrorHandlingController.swift; sourceTree = "<group>"; };
 		62C26B481AFBF14B00470B9C /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = View/Login.storyboard; sourceTree = "<group>"; };
-		62C26B4A1AFBF1BE00470B9C /* LoginRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginRegisterViewController.swift; path = Controller/LoginRegisterViewController.swift; sourceTree = "<group>"; };
+		62C26B4A1AFBF1BE00470B9C /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = Controller/RegisterViewController.swift; sourceTree = "<group>"; };
 		62F9F2471AFBCCCC00EEE8FF /* GroupHere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupHere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62F9F24B1AFBCCCC00EEE8FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62F9F24C1AFBCCCC00EEE8FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +118,7 @@
 				62F9F2501AFBCCCC00EEE8FF /* Main.storyboard */,
 				62F9F2551AFBCCCC00EEE8FF /* LaunchScreen.xib */,
 				62C26B481AFBF14B00470B9C /* Login.storyboard */,
+				629CA6AA1AFE89FD00E5E96B /* RoundedImageView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -122,10 +127,11 @@
 			isa = PBXGroup;
 			children = (
 				62F9F24E1AFBCCCC00EEE8FF /* ViewController.swift */,
-				62C26B4A1AFBF1BE00470B9C /* LoginRegisterViewController.swift */,
+				62C26B4A1AFBF1BE00470B9C /* RegisterViewController.swift */,
 				35EA440D1AFBF3560002CEE9 /* HostViewController.swift */,
 				D4E64ED11AFD304E00B6F602 /* PurchaseViewController.swift */,
 				D4E64ED31AFD340000B6F602 /* homeViewController.swift */,
+				629CA6A61AFE87A100E5E96B /* LoginViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -356,7 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62C26B4B1AFBF1BE00470B9C /* LoginRegisterViewController.swift in Sources */,
+				62C26B4B1AFBF1BE00470B9C /* RegisterViewController.swift in Sources */,
 				D4E64ED41AFD340000B6F602 /* homeViewController.swift in Sources */,
 				D4E64ED21AFD304E00B6F602 /* PurchaseViewController.swift in Sources */,
 				6201041D1AFBE56200E30A84 /* Activity.swift in Sources */,
@@ -364,6 +370,8 @@
 				62F9F24F1AFBCCCC00EEE8FF /* ViewController.swift in Sources */,
 				62F9F24D1AFBCCCC00EEE8FF /* AppDelegate.swift in Sources */,
 				620104211AFBE83900E30A84 /* Group.swift in Sources */,
+				629CA6AB1AFE89FD00E5E96B /* RoundedImageView.swift in Sources */,
+				629CA6A71AFE87A100E5E96B /* LoginViewController.swift in Sources */,
 				62B296AD1AFC019A001B0EBA /* ParseErrorHandlingController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
