@@ -32,7 +32,9 @@ class LoginViewController: UIViewController {
     }
     
     func gotoApp(){
-        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateInitialViewController() as! UIViewController
+        self.presentViewController(vc, animated: true, completion: nil)
     }
-
+    
 }
