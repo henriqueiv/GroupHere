@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func configParse(launchOptions: [NSObject: AnyObject]?){
+        // teste do push
         Parse.enableLocalDatastore()
         self.registerSubclasses()
         Parse.setApplicationId(kParseApplicationID, clientKey: kParseClienteKey)
