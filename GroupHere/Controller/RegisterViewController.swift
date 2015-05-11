@@ -90,7 +90,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func touchDownView(sender: AnyObject) {
-        //self.dismissKeyboard()
+        self.view.endEditing(true)
     }
     
     func gotoApp(){

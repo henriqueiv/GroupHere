@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Wwr-uh-U1P">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -375,23 +375,109 @@
             </objects>
             <point key="canvasLocation" x="2166" y="513"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="WVZ-wI-OGD">
+        <!--Purchase View Controller-->
+        <scene sceneID="qvl-61-bK8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wwr-uh-U1P" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DQp-81-gdp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                <viewController id="Krg-gb-Bio" customClass="PurchaseViewController" customModule="GroupHere" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wd8-aL-GI5"/>
+                        <viewControllerLayoutGuide type="bottom" id="fXC-zF-rWY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SdD-QF-jqr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Activity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEb-Dd-X7k">
+                                <rect key="frame" x="244" y="46" width="112" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Pay to create an activity." translatesAutoresizingMaskIntoConstraints="NO" id="rRF-Dh-dfF">
+                                <rect key="frame" x="180" y="353" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rNQ-Ku-VAi">
+                                <rect key="frame" x="285" y="508" width="30" height="30"/>
+                                <state key="normal" title="Pay">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buyProduct:" destination="Krg-gb-Bio" eventType="touchUpInside" id="IZY-ar-111"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uu3-7d-JLp">
+                                <rect key="frame" x="180" y="109" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="MbV-rm-nWb"/>
+                                    <constraint firstAttribute="width" constant="240" id="UqU-y3-QuA"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2T-YN-xam">
+                                <rect key="frame" x="277" y="267" width="46" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="h2T-YN-xam" firstAttribute="centerX" secondItem="Uu3-7d-JLp" secondAttribute="centerX" id="5Pb-xR-NUs"/>
+                            <constraint firstItem="Uu3-7d-JLp" firstAttribute="top" secondItem="sEb-Dd-X7k" secondAttribute="bottom" constant="42" id="JJv-NJ-Efx"/>
+                            <constraint firstItem="sEb-Dd-X7k" firstAttribute="top" secondItem="wd8-aL-GI5" secondAttribute="bottom" constant="26" id="McU-8X-jrV"/>
+                            <constraint firstItem="fXC-zF-rWY" firstAttribute="top" secondItem="rNQ-Ku-VAi" secondAttribute="bottom" constant="62" id="OIj-Ih-iWX"/>
+                            <constraint firstItem="rRF-Dh-dfF" firstAttribute="leading" secondItem="Uu3-7d-JLp" secondAttribute="leading" id="RI0-Wk-YfV"/>
+                            <constraint firstItem="rNQ-Ku-VAi" firstAttribute="top" secondItem="rRF-Dh-dfF" secondAttribute="bottom" constant="27" id="WUA-Ou-UzY"/>
+                            <constraint firstItem="rRF-Dh-dfF" firstAttribute="top" secondItem="h2T-YN-xam" secondAttribute="bottom" constant="65" id="bmz-Qz-MFH"/>
+                            <constraint firstItem="Uu3-7d-JLp" firstAttribute="trailing" secondItem="rRF-Dh-dfF" secondAttribute="trailing" id="nLA-AZ-Swd"/>
+                            <constraint firstItem="Uu3-7d-JLp" firstAttribute="centerX" secondItem="sEb-Dd-X7k" secondAttribute="centerX" id="qVL-qR-oGZ"/>
+                            <constraint firstItem="h2T-YN-xam" firstAttribute="centerX" secondItem="SdD-QF-jqr" secondAttribute="centerX" id="rtI-yU-u2s"/>
+                            <constraint firstItem="h2T-YN-xam" firstAttribute="top" secondItem="Uu3-7d-JLp" secondAttribute="bottom" constant="30" id="uoo-Of-hzo"/>
+                            <constraint firstItem="rNQ-Ku-VAi" firstAttribute="centerX" secondItem="rRF-Dh-dfF" secondAttribute="centerX" id="vXC-3p-jLc"/>
+                        </constraints>
+                    </view>
                     <connections>
-                        <segue destination="HDE-ci-IDT" kind="relationship" relationship="rootViewController" id="jeY-CV-JRn"/>
+                        <outlet property="buyButton" destination="rNQ-Ku-VAi" id="dgt-Wo-bX2"/>
+                        <outlet property="productDescription" destination="rRF-Dh-dfF" id="wfN-or-XPI"/>
+                        <outlet property="productName" destination="sEb-Dd-X7k" id="pnO-Gb-q2L"/>
+                        <segue destination="MOc-6U-Zsa" kind="show" identifier="payScreen" id="sbe-mw-9mY"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bd4-Qe-VxF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LUm-qh-2Bl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1058" y="-449"/>
+            <point key="canvasLocation" x="1795" y="239"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="rd5-VS-co1">
+            <objects>
+                <viewController id="MOc-6U-Zsa" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1gk-nq-WLZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Up-H2-Typ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mcd-lA-I5d">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ESTOU AQUI PORQUE PAGUEI POR ISSO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EpY-Gb-Yfl">
+                                <rect key="frame" x="135" y="289" width="330" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EpY-Gb-Yfl" firstAttribute="centerX" secondItem="mcd-lA-I5d" secondAttribute="centerX" id="5Fd-qW-1KZ"/>
+                            <constraint firstItem="EpY-Gb-Yfl" firstAttribute="top" secondItem="1gk-nq-WLZ" secondAttribute="bottom" constant="269" id="8aP-P1-dsK"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ehK-jB-icx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2511" y="239"/>
         </scene>
     </scenes>
 </document>
