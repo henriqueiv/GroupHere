@@ -18,7 +18,7 @@ class PurchaseViewController: UIViewController, SKProductsRequestDelegate, SKPay
     @IBOutlet weak var buyButton: UIButton!
     
     var product: SKProduct?
-    var productID = "<INSERT ID HERE>"
+    var productID = "create_activity01"
     
     
     
@@ -45,7 +45,8 @@ class PurchaseViewController: UIViewController, SKProductsRequestDelegate, SKPay
         if (products.count != 0){
             product = products[0] as? SKProduct
             buyButton.enabled = true
-            productName.text = product!.localizedDescription
+            productName.text = product!.localizedTitle
+            productDescription.text = product!.localizedDescription
         } else {
             productName.text = "Not found"
         }
@@ -81,9 +82,9 @@ class PurchaseViewController: UIViewController, SKProductsRequestDelegate, SKPay
     func unlockFeature(){
         let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
-        
-        appdelegate.homeViewController!.enableLevel2()
+        self.performSegueWithIdentifier("payScreen", sender: self)
+        //appdelegate.homeViewController!.enableLevel2()
         buyButton.enabled = false
-        productName.text = "Item has been purchased"
+        //productName.text = "Item has been purchased"
     }
 }
