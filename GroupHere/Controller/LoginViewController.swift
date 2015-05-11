@@ -15,6 +15,15 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var tfUsername: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if (PFUser.currentUser() != nil){
+            self.gotoApp()
+            NSLog("Usuario logaod: %@", PFUser.currentUser()!)
+        }else{
+            NSLog("Nenhum usuario logado")
+        }
+    }
     @IBAction func login(sender: AnyObject) {
         SVProgressHUD.showWithStatus("Logando", maskType: .Gradient)
         PFUser.logInWithUsernameInBackground(self.tfUsername.text, password:self.tfPassword.text) {
@@ -35,4 +44,7 @@ class LoginViewController: UIViewController {
         self.presentViewController(vc, animated: true, completion: nil)
     }
     
+    @IBAction func touchDownView(sender: AnyObject) {
+        self.view.endEditing(true)
+    }
 }

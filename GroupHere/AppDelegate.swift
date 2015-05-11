@@ -16,12 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let kParseApplicationID = "lqRqCuysIlPT580tKDJTnLjoYPQSNFbo728h1nlB"
     let kParseClienteKey = "BcJWH8nwOB9SPD317AKdZ8NUO4z8hfbpnkkIDrPP"
+    let kKeyUserDefaultsDeviceToken = "deviceToken"
     
     var homeViewController: ViewController?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.configParse(launchOptions)
-        println(application)
         self.configNotifications(application)
         return true
     }
@@ -41,28 +41,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func configNotifications(application: UIApplication){
         let userNotificationTypes = (UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound)
-        var settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+        let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
-        println("registrou")
-        println(application)
+        println("registerForRemoteNotifications")
     }
-    
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         // Store the deviceToken in the current installation and save it to Parse.
-        var currentInstallation = PFInstallation.currentInstallation()
+        // salvar deviceToken no usuario
+        let currentInstallation = PFInstallation.currentInstallation()
         currentInstallation.setDeviceTokenFromData(deviceToken)
         currentInstallation.channels = ["global"]
-        println("salvanu")
-        currentInstallation.save()
-        println("salvou")
+        println("didRegisterForRemoteNotificationsWithDeviceToken")
+        currentInstallation.saveInBackground()
+        
+        let deviceTokenString = NSString(data: deviceToken, encoding: NSUTF8StringEncoding)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(deviceTokenString, forKey: kKeyUserDefaultsDeviceToken)
+        println("didRegisterForRemoteNotificationsWithDeviceToken")
     }
-    
-    
-//    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-//        PFPush.handlePush(userInfo)
-//    }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         PFPush.handlePush(userInfo)
