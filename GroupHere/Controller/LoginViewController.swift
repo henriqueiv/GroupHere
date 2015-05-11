@@ -16,9 +16,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var tfPassword: UITextField!
     
     @IBAction func login(sender: AnyObject) {
-        if !SVProgressHUD.isVisible(){
-            SVProgressHUD.showWithStatus("Logando", maskType: .Gradient)
-        }
+        SVProgressHUD.showWithStatus("Logando", maskType: .Gradient)
         PFUser.logInWithUsernameInBackground(self.tfUsername.text, password:self.tfPassword.text) {
             (user: PFUser?, error: NSError?) -> Void in
             SVProgressHUD.dismiss()

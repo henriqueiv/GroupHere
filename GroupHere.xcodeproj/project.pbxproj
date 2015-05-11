@@ -126,12 +126,12 @@
 		6201041F1AFBE57C00E30A84 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				62F9F24E1AFBCCCC00EEE8FF /* ViewController.swift */,
-				62C26B4A1AFBF1BE00470B9C /* RegisterViewController.swift */,
-				35EA440D1AFBF3560002CEE9 /* HostViewController.swift */,
-				D4E64ED11AFD304E00B6F602 /* PurchaseViewController.swift */,
 				D4E64ED31AFD340000B6F602 /* homeViewController.swift */,
+				35EA440D1AFBF3560002CEE9 /* HostViewController.swift */,
 				629CA6A61AFE87A100E5E96B /* LoginViewController.swift */,
+				D4E64ED11AFD304E00B6F602 /* PurchaseViewController.swift */,
+				62C26B4A1AFBF1BE00470B9C /* RegisterViewController.swift */,
+				62F9F24E1AFBCCCC00EEE8FF /* ViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -256,7 +256,7 @@
 				TargetAttributes = {
 					62F9F2461AFBCCCC00EEE8FF = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = Z83BJJ28JR;
+						DevelopmentTeam = 8WCPHDZJPJ;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 1;
@@ -431,7 +431,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: br.com.GroupHere";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: br.com.GroupHere";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -476,7 +477,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: br.com.GroupHere";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: br.com.GroupHere";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
