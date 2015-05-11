@@ -50,11 +50,10 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         
         user.signUpInBackgroundWithBlock { (succeeded: Bool, error: NSError?) -> Void in
             if succeeded {
-                //                self.performSegueWithIdentifier("gotoApp", sender: nil)
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     SVProgressHUD.dismiss()
                     SVProgressHUD.showSuccessWithStatus("Usuário cadastrado com sucesso", maskType: .Gradient)
-                    
+                    self.gotoApp()
                 })
             }else{
                 //                ParseErrorHandlingController.handleParseError(error!)
@@ -62,9 +61,26 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                     SVProgressHUD.dismiss()
                     if error!.code == self.kPFErrorUsernameTaken{
                         SVProgressHUD.showWithStatus("Usuário já cadastrado, realizando login...", maskType: .Gradient)
-                        //                        self.login(user)
+                        PFUser.logInWithUsernameInBackground(self.tfUsername.text, password:self.tfPassword.text) {
+                            (user: PFUser?, error: NSError?) -> Void in
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                SVProgressHUD.dismiss()
+                            })
+                            if user != nil {
+                                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                    SVProgressHUD.showSuccessWithStatus("Logado com sucesso", maskType: .Gradient)
+                                    self.gotoApp()
+                                })
+                            } else {
+                                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                    SVProgressHUD.showErrorWithStatus(error?.description, maskType: .Gradient)
+                                })
+                            }
+                        }
                     }else{
-                        SVProgressHUD.showErrorWithStatus(error?.description, maskType: .Gradient)
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            SVProgressHUD.showErrorWithStatus(error?.description, maskType: .Gradient)
+                        })
                     }
                     println(error)
                 })
@@ -141,6 +157,6 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
             #endif
         }
     }
-
+    
     
 }

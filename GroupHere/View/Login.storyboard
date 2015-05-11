@@ -61,22 +61,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LlT-Ey-FKZ">
-                                <rect key="frame" x="266" y="405" width="53" height="30"/>
-                                <state key="normal" title="Sign up">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="login:" destination="GUI-mc-dDF" eventType="touchUpInside" id="Qah-kp-J1P"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RZ-3i-ysg">
                                 <rect key="frame" x="16" y="562" width="52" height="30"/>
                                 <state key="normal" title="&lt; Login">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="signUp:" destination="GUI-mc-dDF" eventType="touchUpInside" id="z9v-f7-GpE"/>
                                     <segue destination="qwJ-OD-uu5" kind="show" id="9xT-qG-mED"/>
                                 </connections>
                             </button>
@@ -108,6 +98,15 @@
                                     <constraint firstAttribute="height" constant="1" id="tuG-On-sIe"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LlT-Ey-FKZ">
+                                <rect key="frame" x="266" y="405" width="53" height="30"/>
+                                <state key="normal" title="Sign up">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="signUp:" destination="GUI-mc-dDF" eventType="touchUpInside" id="ZBc-e9-pFl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -130,9 +129,11 @@
                             <constraint firstAttribute="centerX" secondItem="T9i-Pt-QAD" secondAttribute="centerX" constant="-0.5" id="Yzs-Ld-fs4"/>
                             <constraint firstItem="jZE-Sw-vsk" firstAttribute="leading" secondItem="LfU-Ta-Qnl" secondAttribute="leading" id="b8X-6t-Yoc"/>
                             <constraint firstAttribute="centerX" secondItem="2wn-Bw-c6w" secondAttribute="centerX" id="bJ8-VO-Ecq"/>
+                            <constraint firstAttribute="centerX" secondItem="LlT-Ey-FKZ" secondAttribute="centerX" constant="7.5" id="djz-RX-l3f"/>
                             <constraint firstItem="jZE-Sw-vsk" firstAttribute="bottom" secondItem="LfU-Ta-Qnl" secondAttribute="bottom" id="eHo-Mj-1X5"/>
                             <constraint firstAttribute="centerX" secondItem="cPY-DD-oDm" secondAttribute="centerX" id="fgN-mq-7u6"/>
                             <constraint firstItem="vPY-HU-Izn" firstAttribute="top" secondItem="X7b-ej-ZcN" secondAttribute="bottom" constant="44" id="gZb-iC-o30"/>
+                            <constraint firstItem="LlT-Ey-FKZ" firstAttribute="top" secondItem="9vI-wR-r6Q" secondAttribute="bottom" constant="21" id="hE8-Kw-FW1"/>
                             <constraint firstAttribute="centerX" secondItem="LfU-Ta-Qnl" secondAttribute="centerX" id="mgY-Lp-vMF"/>
                             <constraint firstItem="cPY-DD-oDm" firstAttribute="top" secondItem="LfU-Ta-Qnl" secondAttribute="bottom" constant="17" id="qIq-lF-kwK"/>
                             <constraint firstItem="LlT-Ey-FKZ" firstAttribute="top" secondItem="9vI-wR-r6Q" secondAttribute="bottom" constant="21" id="t2J-WI-pFZ"/>
@@ -140,6 +141,12 @@
                             <constraint firstItem="jZE-Sw-vsk" firstAttribute="trailing" secondItem="X7b-ej-ZcN" secondAttribute="trailing" id="z0I-Z7-4bX"/>
                             <constraint firstItem="T9i-Pt-QAD" firstAttribute="top" secondItem="zlG-cW-1UU" secondAttribute="bottom" constant="40" id="zMC-Lx-o2I"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="MGT-kJ-8hE"/>
+                                <exclude reference="t2J-WI-pFZ"/>
+                            </mask>
+                        </variation>
                         <connections>
                             <action selector="touchDownView:" destination="GUI-mc-dDF" eventType="touchDown" id="I9b-mO-5HS"/>
                         </connections>

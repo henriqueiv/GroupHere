@@ -10,6 +10,9 @@ import UIKit
 
 class RoundedImageView: UIImageView {
     
+    override func layoutSubviews() {
+        self.roundCorner()
+    }
     
     func roundCorner(){
         self.layer.borderColor = UIColor.whiteColor().CGColor
