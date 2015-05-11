@@ -54,57 +54,44 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate {
     // MARK: IBAction method implementation
     
     @IBAction func switchBroadcastingState(sender: AnyObject) {
-//        if txtMajor.text == "" || txtMinor.text == "" {
-//            return
-//        }
-//        
-//        if txtMajor.isFirstResponder() || txtMinor.isFirstResponder() {
-//            return
-//        }
-        
-        
         if !isBroadcasting {
             if bluetoothPeripheralManager.state == CBPeripheralManagerState.PoweredOn {
                 var act = Activity.new()
                 
-                if ((activityName.text) != nil){
+                if ((activityName.text) != ""){
                     let query = Activity.query()
-                    query?.orderByAscending("minor")
+                    query?.orderByDescending("minor")
                     query?.getFirstObjectInBackgroundWithBlock({ (object, error) -> Void in
                         println(object)
-                        if let activity = object as? Activity{
+                        if let activ = object as? Activity{
                             act.name = self.activityName.text
                             act.host = PFUser.currentUser()!
-                            act.minor = activity.minor + 1
+                            act.minor = NSNumber(integer: activ.minor.integerValue + 1)
                             act.major = 10
                             act.saveInBackgroundWithBlock({ (sucess: Bool, error) -> Void in
                                 if(sucess){
-                                    println("Salvou tudo certo")
+                                    println("Salvou tudo certo:")
                                     println(act)
+                                    
+                                    self.beaconRegion = CLBeaconRegion(proximityUUID: self.uuid, major: act.major.unsignedShortValue , minor: act.minor.unsignedShortValue, identifier: "com.appcoda.beacondemo")
+                                    
+                                    self.dataDictionary = self.beaconRegion.peripheralDataWithMeasuredPower(nil)
+                                    self.bluetoothPeripheralManager.startAdvertising(self.dataDictionary as [NSObject : AnyObject])
+                                    
+                                    self.btnAction.setTitle("Stop", forState: UIControlState.Normal)
+                                    self.lblStatus.text = "Broadcasting..."
+                                    self.txtMajor.enabled = false
+                                    self.txtMinor.enabled = false
+                                    
+                                    self.isBroadcasting = true
+                                    
+                                    
+                                    
+                                    
                                 }
                             })
-                            
-                            
-                            
                         }
-                        
                     })
-                    
-                    
-                    let major: CLBeaconMajorValue = UInt16(txtMajor.text.toInt()!)
-                    let minor: CLBeaconMinorValue = UInt16(txtMinor.text.toInt()!)
-                    beaconRegion = CLBeaconRegion(proximityUUID: uuid, major: major, minor: minor, identifier: "com.appcoda.beacondemo")
-                    
-                    dataDictionary = beaconRegion.peripheralDataWithMeasuredPower(nil)
-                    bluetoothPeripheralManager.startAdvertising(dataDictionary as [NSObject : AnyObject])
-                    
-                    btnAction.setTitle("Stop", forState: UIControlState.Normal)
-                    lblStatus.text = "Broadcasting..."
-                    txtMajor.enabled = false
-                    txtMinor.enabled = false
-                    
-                    isBroadcasting = true
-
                 }else{
                     let alert = UIAlertView(title: "You need a acitivity name", message: "Choose a name and try again", delegate: nil, cancelButtonTitle: "OK")
                     alert.show()

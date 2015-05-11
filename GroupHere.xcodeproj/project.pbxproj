@@ -128,13 +128,9 @@
 		6201041F1AFBE57C00E30A84 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				62F9F24E1AFBCCCC00EEE8FF /* ViewController.swift */,
-				62C26B4A1AFBF1BE00470B9C /* RegisterViewController.swift */,
-				35EA440D1AFBF3560002CEE9 /* HostViewController.swift */,
-				35F519661B01116600B3941D /* ClientViewController.swift */,
-				D4E64ED11AFD304E00B6F602 /* PurchaseViewController.swift */,
 				D4E64ED31AFD340000B6F602 /* homeViewController.swift */,
 				35EA440D1AFBF3560002CEE9 /* HostViewController.swift */,
+				35F519661B01116600B3941D /* ClientViewController.swift */,
 				629CA6A61AFE87A100E5E96B /* LoginViewController.swift */,
 				D4E64ED11AFD304E00B6F602 /* PurchaseViewController.swift */,
 				62C26B4A1AFBF1BE00470B9C /* RegisterViewController.swift */,
@@ -272,6 +268,7 @@
 					};
 					62F9F25B1AFBCCCC00EEE8FF = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = BJXVASWXX8;
 						TestTargetID = 62F9F2461AFBCCCC00EEE8FF;
 					};
 				};
@@ -539,6 +536,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -550,6 +549,7 @@
 				INFOPLIST_FILE = GroupHereTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GroupHere.app/GroupHere";
 			};
 			name = Debug;
@@ -558,6 +558,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -565,6 +567,7 @@
 				INFOPLIST_FILE = GroupHereTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GroupHere.app/GroupHere";
 			};
 			name = Release;

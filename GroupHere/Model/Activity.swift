@@ -14,8 +14,8 @@ class Activity: PFObject, PFSubclassing {
     @NSManaged var name: String
     @NSManaged var location: PFGeoPoint
     @NSManaged var host: PFUser
-    @NSManaged var minor: Int
-    @NSManaged var major: Int
+    @NSManaged var minor: NSNumber
+    @NSManaged var major: NSNumber
     
     static func parseClassName() -> String {
         return "Activity";

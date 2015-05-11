@@ -50,6 +50,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         
         user.signUpInBackgroundWithBlock { (succeeded: Bool, error: NSError?) -> Void in
             if succeeded {
+                //                self.performSegueWithIdentifier("gotoApp", sender: nil)
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     SVProgressHUD.dismiss()
                     SVProgressHUD.showSuccessWithStatus("Usuário cadastrado com sucesso", maskType: .Gradient)
