@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		35EA440E1AFBF3560002CEE9 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA440D1AFBF3560002CEE9 /* HostViewController.swift */; };
+		35F519671B01116600B3941D /* ClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F519661B01116600B3941D /* ClientViewController.swift */; };
 		6201041D1AFBE56200E30A84 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6201041C1AFBE56200E30A84 /* Activity.swift */; };
 		620104211AFBE83900E30A84 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620104201AFBE83900E30A84 /* Group.swift */; };
 		629CA6A71AFE87A100E5E96B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629CA6A61AFE87A100E5E96B /* LoginViewController.swift */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		23F3B3AA1C1155614DA4BADC /* Pods-GroupHere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupHere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupHere/Pods-GroupHere.debug.xcconfig"; sourceTree = "<group>"; };
 		35EA440D1AFBF3560002CEE9 /* HostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HostViewController.swift; path = Controller/HostViewController.swift; sourceTree = "<group>"; };
+		35F519661B01116600B3941D /* ClientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientViewController.swift; sourceTree = "<group>"; };
 		57672A3B5257F13239008E81 /* Pods_GroupHere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupHere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6201041C1AFBE56200E30A84 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Activity.swift; path = Model/Activity.swift; sourceTree = "<group>"; };
 		620104201AFBE83900E30A84 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Group.swift; path = Model/Group.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				62F9F24E1AFBCCCC00EEE8FF /* ViewController.swift */,
 				62C26B4A1AFBF1BE00470B9C /* RegisterViewController.swift */,
 				35EA440D1AFBF3560002CEE9 /* HostViewController.swift */,
+				35F519661B01116600B3941D /* ClientViewController.swift */,
 				D4E64ED11AFD304E00B6F602 /* PurchaseViewController.swift */,
 				D4E64ED31AFD340000B6F602 /* homeViewController.swift */,
 				629CA6A61AFE87A100E5E96B /* LoginViewController.swift */,
@@ -256,7 +259,7 @@
 				TargetAttributes = {
 					62F9F2461AFBCCCC00EEE8FF = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = Z83BJJ28JR;
+						DevelopmentTeam = BJXVASWXX8;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 1;
@@ -373,6 +376,7 @@
 				629CA6AB1AFE89FD00E5E96B /* RoundedImageView.swift in Sources */,
 				629CA6A71AFE87A100E5E96B /* LoginViewController.swift in Sources */,
 				62B296AD1AFC019A001B0EBA /* ParseErrorHandlingController.swift in Sources */,
+				35F519671B01116600B3941D /* ClientViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
