@@ -9,6 +9,7 @@
 import UIKit
 import QuartzCore
 import CoreLocation
+import Parse
 
 class ClientViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
     
@@ -32,6 +33,9 @@ class ClientViewController: UIViewController, CLLocationManagerDelegate, UITable
     
     var lastProximity: CLProximity! = CLProximity.Unknown
     
+    let uuid = NSUUID(UUIDString: "F34A1A1F-500F-48FB-AFAA-9584D641D7B1")
+    
+    let identifier = "br.com.henriquevalcanaia.GroupHere"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,10 +49,8 @@ class ClientViewController: UIViewController, CLLocationManagerDelegate, UITable
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
-        
-        let uuid = NSUUID(UUIDString: "F34A1A1F-500F-48FB-AFAA-9584D641D7B1")
-        beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: "com.appcoda.beacondemo")
-        
+
+        beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: identifier)
         beaconRegion.notifyOnEntry = true
         beaconRegion.notifyOnExit = true
     }
@@ -169,6 +171,14 @@ class ClientViewController: UIViewController, CLLocationManagerDelegate, UITable
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if let activity = nearbyActivitiesArray[indexPath.row] as? Activity{
+            let array = NSArray(object: PFUser.currentUser()!)
+            activity.users = array
+            activity.saveInBackgroundWithBlock({ (sucess: Bool, error: NSError?) -> Void in
+                println("Users array salvo\(array)")
+            })
+        }
     }
     
     

@@ -16,6 +16,7 @@ class Activity: PFObject, PFSubclassing {
     @NSManaged var host: PFUser
     @NSManaged var minor: NSNumber
     @NSManaged var major: NSNumber
+    @NSManaged var users: NSArray
     
     static func parseClassName() -> String {
         return "Activity";

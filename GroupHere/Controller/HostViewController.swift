@@ -28,6 +28,8 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate {
     
     let uuid = NSUUID(UUIDString: "F34A1A1F-500F-48FB-AFAA-9584D641D7B1")
     
+    let identifier = "br.com.henriquevalcanaia.GroupHere"
+    
     var beaconRegion: CLBeaconRegion!
     
     var bluetoothPeripheralManager: CBPeripheralManager!
@@ -57,48 +59,53 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate {
         if !isBroadcasting {
             if bluetoothPeripheralManager.state == CBPeripheralManagerState.PoweredOn {
                 var act = Activity.new()
-                
                 if ((activityName.text) != ""){
                     let query = Activity.query()
                     query?.orderByDescending("minor")
                     query?.getFirstObjectInBackgroundWithBlock({ (object, error) -> Void in
-                        println(object)
-                        if let activ = object as? Activity{
-                            act.name = self.activityName.text
-                            act.host = PFUser.currentUser()!
-                            act.minor = NSNumber(integer: activ.minor.integerValue + 1)
-                            act.major = 10
+                        println("Objeto da query: \(object)")
+                        
+                        var activ = object as? Activity
+                        if (activ == nil){
+                            act.minor = 0
+                            activ = act
+                        }
+                        act.name = self.activityName.text
+                        act.host = PFUser.currentUser()!
+                        act.minor = NSNumber(integer: activ!.minor.integerValue + 1)
+                        act.major = 10
+                        PFGeoPoint.geoPointForCurrentLocationInBackground({ (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+                            if let location = geoPoint{
+                                act.location = location
+                            }
                             act.saveInBackgroundWithBlock({ (sucess: Bool, error) -> Void in
                                 if(sucess){
-                                    println("Salvou tudo certo:")
+                                    println("Saved activit on Parese:")
                                     println(act)
                                     
-                                    self.beaconRegion = CLBeaconRegion(proximityUUID: self.uuid, major: act.major.unsignedShortValue , minor: act.minor.unsignedShortValue, identifier: "com.appcoda.beacondemo")
+                                    self.beaconRegion = CLBeaconRegion(proximityUUID: self.uuid, major: act.major.unsignedShortValue , minor: act.minor.unsignedShortValue, identifier: self.identifier)
                                     
                                     self.dataDictionary = self.beaconRegion.peripheralDataWithMeasuredPower(nil)
                                     self.bluetoothPeripheralManager.startAdvertising(self.dataDictionary as [NSObject : AnyObject])
                                     
                                     self.btnAction.setTitle("Stop", forState: UIControlState.Normal)
+                                    
                                     self.lblStatus.text = "Broadcasting..."
+                                    
                                     self.txtMajor.enabled = false
                                     self.txtMinor.enabled = false
                                     
                                     self.isBroadcasting = true
-                                    
-                                    
-                                    
-                                    
                                 }
                             })
-                        }
+                        })
                     })
                 }else{
-                    let alert = UIAlertView(title: "You need a acitivity name", message: "Choose a name and try again", delegate: nil, cancelButtonTitle: "OK")
+                    let alert = UIAlertView(title: "You need the acitivity name", message: "Choose a name and try again", delegate: nil, cancelButtonTitle: "OK")
                     alert.show()
                 }
             }
-        }
-        else {
+        }else {
             bluetoothPeripheralManager.stopAdvertising()
             
             btnAction.setTitle("Start", forState: UIControlState.Normal)
