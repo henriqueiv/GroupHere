@@ -13,7 +13,7 @@ import SVProgressHUD
 let kKeyUserDefaultsDeviceToken = "deviceToken"
 
 class LoginViewController: UIViewController {
-
+    
     @IBOutlet weak var tfUsername: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
     
@@ -47,9 +47,10 @@ class LoginViewController: UIViewController {
     }
     
     func updateUserDeviceToken(){
-        let deviceToken = NSUserDefaults.standardUserDefaults().stringForKey(kKeyUserDefaultsDeviceToken)
-        PFUser.currentUser()?.setValue(deviceToken, forKey: "deviceToken")
-        PFUser.currentUser()?.saveInBackground()
+        if let deviceToken = NSUserDefaults.standardUserDefaults().stringForKey(kKeyUserDefaultsDeviceToken){
+            PFUser.currentUser()?.setValue(deviceToken, forKey: "deviceToken")
+            PFUser.currentUser()?.saveInBackground()
+        }
     }
     
     @IBAction func touchDownView(sender: AnyObject) {

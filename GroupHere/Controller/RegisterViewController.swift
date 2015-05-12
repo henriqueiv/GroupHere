@@ -70,6 +70,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                             if user != nil {
                                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                     SVProgressHUD.showSuccessWithStatus("Logado com sucesso", maskType: .Gradient)
+                                    self.updateUserDeviceToken()
                                     self.gotoApp()
                                 })
                             } else {
@@ -86,6 +87,13 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                     println(error)
                 })
             }
+        }
+    }
+    
+    func updateUserDeviceToken(){
+        if let deviceToken = NSUserDefaults.standardUserDefaults().stringForKey(kKeyUserDefaultsDeviceToken){
+            PFUser.currentUser()?.setValue(deviceToken, forKey: "deviceToken")
+            PFUser.currentUser()?.saveInBackground()
         }
     }
     
