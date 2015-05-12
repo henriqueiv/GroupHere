@@ -61,14 +61,16 @@ class PurchaseViewController: UIViewController, SKProductsRequestDelegate, SKPay
     @IBAction func buyProduct(sender: AnyObject){
         let payment = SKPayment(product: product)
         SKPaymentQueue.defaultQueue().addPayment(payment)
+        //println("comprando")
     }
     
     func paymentQueue(queue: SKPaymentQueue!, updatedTransactions transactions: [AnyObject]!) {
         for transaction in transactions as![SKPaymentTransaction]{
             switch transaction.transactionState{
             case SKPaymentTransactionState.Purchased:
-                self.unlockFeature()
+                //println("destravando")
                 SKPaymentQueue.defaultQueue().finishTransaction(transaction)
+                self.unlockFeature()
                 
             case SKPaymentTransactionState.Failed:
                 SKPaymentQueue.defaultQueue().finishTransaction(transaction)
@@ -81,7 +83,7 @@ class PurchaseViewController: UIViewController, SKProductsRequestDelegate, SKPay
     
     func unlockFeature(){
         let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
+        //println("Comprei")
         self.performSegueWithIdentifier("payScreen", sender: self)
         //appdelegate.homeViewController!.enableLevel2()
         buyButton.enabled = false
