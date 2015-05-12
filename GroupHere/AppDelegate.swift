@@ -57,8 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         currentInstallation.saveInBackground()
         
         let deviceTokenString = NSString(data: deviceToken, encoding: NSUTF8StringEncoding)
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(deviceTokenString, forKey: kKeyUserDefaultsDeviceToken)
+        NSUserDefaults.standardUserDefaults().setObject(deviceTokenString, forKey: kKeyUserDefaultsDeviceToken)
         println("didRegisterForRemoteNotificationsWithDeviceToken")
     }
     

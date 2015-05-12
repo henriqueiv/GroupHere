@@ -18,29 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera3" translatesAutoresizingMaskIntoConstraints="NO" id="T9i-Pt-QAD" customClass="RoundedImageView" customModule="GroupHere" customModuleProvider="target">
-                                <rect key="frame" x="231" y="60" width="139" height="139"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="139" id="oza-i7-kYX"/>
-                                    <constraint firstAttribute="width" secondItem="T9i-Pt-QAD" secondAttribute="height" multiplier="1:1" id="sD2-an-RPu"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="100"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="Csu-PW-sD1" appends="YES" id="uVA-T8-Eq3"/>
-                                </connections>
-                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Henrique Valcanaia" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2wn-Bw-c6w">
                                 <rect key="frame" x="179" y="217" width="242" height="30"/>
                                 <constraints>
@@ -119,6 +96,29 @@
                                     <action selector="signUp:" destination="GUI-mc-dDF" eventType="touchUpInside" id="ZBc-e9-pFl"/>
                                 </connections>
                             </button>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera3" translatesAutoresizingMaskIntoConstraints="NO" id="T9i-Pt-QAD" customClass="RoundedImageView" customModule="GroupHere" customModuleProvider="target">
+                                <rect key="frame" x="231" y="60" width="139" height="139"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="139" id="oza-i7-kYX"/>
+                                    <constraint firstAttribute="width" secondItem="T9i-Pt-QAD" secondAttribute="height" multiplier="1:1" id="sD2-an-RPu"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="100"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.0" green="0.55555555560000003" blue="0.051274794370000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Csu-PW-sD1" appends="YES" id="uVA-T8-Eq3"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
