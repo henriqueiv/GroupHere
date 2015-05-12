@@ -22,7 +22,6 @@
 		62F9F2571AFBCCCC00EEE8FF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62F9F2551AFBCCCC00EEE8FF /* LaunchScreen.xib */; };
 		62F9F2631AFBCCCC00EEE8FF /* GroupHereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F9F2621AFBCCCC00EEE8FF /* GroupHereTests.swift */; };
 		D4E64ED21AFD304E00B6F602 /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E64ED11AFD304E00B6F602 /* PurchaseViewController.swift */; };
-		D4E64ED41AFD340000B6F602 /* homeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E64ED31AFD340000B6F602 /* homeViewController.swift */; };
 		D4E64ED61AFD431A00B6F602 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4E64ED51AFD431A00B6F602 /* StoreKit.framework */; };
 		FA191A5262BBA056051D2F5E /* Pods_GroupHere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57672A3B5257F13239008E81 /* Pods_GroupHere.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -61,7 +60,6 @@
 		62F9F2621AFBCCCC00EEE8FF /* GroupHereTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupHereTests.swift; sourceTree = "<group>"; };
 		8F0BE9283E1C9847535B9832 /* Pods-GroupHere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupHere.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupHere/Pods-GroupHere.release.xcconfig"; sourceTree = "<group>"; };
 		D4E64ED11AFD304E00B6F602 /* PurchaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PurchaseViewController.swift; path = Controller/PurchaseViewController.swift; sourceTree = "<group>"; };
-		D4E64ED31AFD340000B6F602 /* homeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = homeViewController.swift; path = Controller/homeViewController.swift; sourceTree = "<group>"; };
 		D4E64ED51AFD431A00B6F602 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -126,7 +124,6 @@
 		6201041F1AFBE57C00E30A84 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D4E64ED31AFD340000B6F602 /* homeViewController.swift */,
 				35EA440D1AFBF3560002CEE9 /* HostViewController.swift */,
 				629CA6A61AFE87A100E5E96B /* LoginViewController.swift */,
 				D4E64ED11AFD304E00B6F602 /* PurchaseViewController.swift */,
@@ -256,7 +253,7 @@
 				TargetAttributes = {
 					62F9F2461AFBCCCC00EEE8FF = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 8WCPHDZJPJ;
+						DevelopmentTeam = Z83BJJ28JR;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 1;
@@ -364,7 +361,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				62C26B4B1AFBF1BE00470B9C /* RegisterViewController.swift in Sources */,
-				D4E64ED41AFD340000B6F602 /* homeViewController.swift in Sources */,
 				D4E64ED21AFD304E00B6F602 /* PurchaseViewController.swift in Sources */,
 				6201041D1AFBE56200E30A84 /* Activity.swift in Sources */,
 				35EA440E1AFBF3560002CEE9 /* HostViewController.swift in Sources */,
