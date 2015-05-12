@@ -109,70 +109,34 @@ class ClientViewController: UIViewController, CLLocationManagerDelegate, UITable
     func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
         lblBeaconReport.text = "No beacons in range"
         lblBeaconDetails.hidden = true
+        
     }
     
-    
     func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
-        var shouldHideBeaconDetails = true
         
+//        var shouldHideBeaconDetails = true
         if let foundBeacons = beacons {
             if foundBeacons.count > 0 {
-                
-                if let closestBeacon = foundBeacons[0] as? CLBeacon {
-                    if closestBeacon != lastFoundBeacon || lastProximity != closestBeacon.proximity  {
-                        lastFoundBeacon = closestBeacon
-                        lastProximity = closestBeacon.proximity
-                        
-                        var proximityMessage: String!
-                        switch lastFoundBeacon.proximity {
-                        case CLProximity.Immediate:
-                            proximityMessage = "Very close"
-                            
-                        case CLProximity.Near:
-                            proximityMessage = "Near"
-                            
-                        case CLProximity.Far:
-                            proximityMessage = "Far"
-                            
-                        default:
-                            proximityMessage = "Where's the beacon?"
-                            self.nearbyActivitiesArray = []
-                        }
-                        
-                        shouldHideBeaconDetails = false
-                        
-                        
-                        let activity = Activity.new()
-                        let query = Activity.query()
-                        query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
-                            
-                            self.nearbyActivitiesArray = []
-                            if let array = objects{
-                                for object in array{
-                                    if let activity = object as? Activity{
-                                        for beacon in foundBeacons{
-                                            if ((beacon as! CLBeacon).minor.integerValue == activity.minor){
-                                                self.nearbyActivitiesArray.addObject(activity)
-                                            }
-                                        }
-                                        
-                                        if (closestBeacon.minor.integerValue == activity.minor){
-                                            println("Achou atividade no parse")
-                                            self.lblBeaconDetails.text = "Beacon Details:" + activity.name + "\nMajor = " + String(closestBeacon.major.intValue) + "\nMinor = " + String(closestBeacon.minor.intValue) + "\nDistance: " + proximityMessage
-                                        }
+                self.nearbyActivitiesArray = []
+                let activity = Activity.new()
+                let query = Activity.query()
+                query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+                    if let array = objects{
+                        for object in array{
+                            if let activity = object as? Activity{
+                                for beacon in foundBeacons{
+                                    if ((beacon as! CLBeacon).minor.integerValue == activity.minor){
+                                        self.nearbyActivitiesArray.addObject(activity)
                                     }
                                 }
                             }
-                        })
-                        self.tableView.reloadData()
+                        }
                     }
-                }
+                    self.tableView.reloadData()
+                })
             }
         }
-        
-        lblBeaconDetails.hidden = shouldHideBeaconDetails
     }
-    
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println(error)
@@ -198,7 +162,8 @@ class ClientViewController: UIViewController, CLLocationManagerDelegate, UITable
         
         if let activity = nearbyActivitiesArray[indexPath.row] as? Activity{
             cell.textLabel?.text = activity.name
-            cell.detailTextLabel?.text = "Minor: \(activity.minor) Major: \(activity.major) Host:\(activity.host.username!) "
+            let name: String = activity.host["name"]! as! String
+            cell.detailTextLabel?.text = "Minor: \(activity.minor) Major: \(activity.major) Host: \(name) "
         }
         return cell
     }
