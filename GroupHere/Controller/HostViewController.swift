@@ -11,99 +11,102 @@ import QuartzCore
 import CoreLocation
 import CoreBluetooth
 import Parse
+import SVProgressHUD
 
-class HostViewController: UIViewController, CBPeripheralManagerDelegate {
+class HostViewController: UIViewController, CBPeripheralManagerDelegate, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var btnAction: UIButton!
-    
     @IBOutlet weak var lblStatus: UILabel!
-    
     @IBOutlet weak var lblBTStatus: UILabel!
-    
-    @IBOutlet weak var txtMajor: UITextField!
-    
-    @IBOutlet weak var txtMinor: UITextField!
-    
-    @IBOutlet weak var activityName: UITextField!
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var tableView: UITableView!
     
     let uuid = NSUUID(UUIDString: "F34A1A1F-500F-48FB-AFAA-9584D641D7B1")
-    
     let identifier = "br.com.henriquevalcanaia.GroupHere"
-    
-    var beaconRegion: CLBeaconRegion!
-    
     var bluetoothPeripheralManager: CBPeripheralManager!
-    
-    var isBroadcasting = false
-    
     var dataDictionary = NSDictionary()
-    
+    var beaconRegion: CLBeaconRegion!
+    var activity = Activity.new()
+    var isBroadcasting = false
+    let major = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
         bluetoothPeripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func populateTableView(){
+        let query = Activity.query()
+        query?.whereKey("host", equalTo: PFUser.currentUser()!)
+        query?.whereKey("minor", equalTo: self.activity.minor)
+        query?.getFirstObjectInBackgroundWithBlock({ (object: PFObject?,error: NSError?) -> Void in
+            self.activity = object as! Activity
+            println(self.activity.users)
+        })
+        tableView.reloadData()
+    }
+    
+    func createActivityAndStartTransmiting(){
+        if ((textField.text) != ""){
+            //Query para incrementar o minor baseado na ultima activity do Parse
+            SVProgressHUD.showWithStatus("Creating Ativity", maskType: .Gradient)
+            let query = Activity.query()
+            query?.orderByDescending("minor")
+            query?.getFirstObjectInBackgroundWithBlock({ (object, error) -> Void in
+                var activ = object as? Activity
+                //Se nao existir nenhuma activity no parse é criada uma
+                if (activ == nil){
+                    self.activity.minor = 0
+                    activ = self.activity
+                }
+                self.activity.name = self.textField.text
+                self.activity.host = PFUser.currentUser()!
+                self.activity.minor = NSNumber(integer: activ!.minor.integerValue + 1)
+                self.activity.major = self.major
+                PFGeoPoint.geoPointForCurrentLocationInBackground({ (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+                    if let location = geoPoint{
+                        self.activity.location = location
+                    }
+                    self.activity.saveInBackgroundWithBlock({ (sucess: Bool, error: NSError?) -> Void in
+                        if(sucess){
+                            println("Saved activit on Parese:")
+                            println(self.activity)
+                            self.beaconRegion = CLBeaconRegion(proximityUUID: self.uuid, major: self.activity.major.unsignedShortValue , minor: self.activity.minor.unsignedShortValue, identifier: self.identifier)
+                            self.dataDictionary = self.beaconRegion.peripheralDataWithMeasuredPower(nil)
+                            self.bluetoothPeripheralManager.startAdvertising(self.dataDictionary as [NSObject : AnyObject])
+                            self.btnAction.setTitle("Stop", forState: UIControlState.Normal)
+                            self.lblStatus.text = "Broadcasting..."
+                            self.isBroadcasting = true
+                            SVProgressHUD.showSuccessWithStatus("Activity created with success", maskType: .Gradient)
+                        }else{
+                            SVProgressHUD.showErrorWithStatus(error?.description, maskType: .Gradient)
+                        }
+                    })
+                })
+            })
+        }else{
+            let alert = UIAlertView(title: "You need the acitivity name", message: "Choose a name and try again", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }
+    }
+    
+    // MARK: IBAction method implementation
+    @IBAction func populate(sender: AnyObject) {
+        populateTableView()
     }
     
     @IBAction func dismisKeyboard(sender: AnyObject) {
         self.view.endEditing(true)
     }
     
-    // MARK: IBAction method implementation
-    
     @IBAction func switchBroadcastingState(sender: AnyObject) {
         if !isBroadcasting {
             if bluetoothPeripheralManager.state == CBPeripheralManagerState.PoweredOn {
-                var act = Activity.new()
-                if ((activityName.text) != ""){
-                    let query = Activity.query()
-                    query?.orderByDescending("minor")
-                    query?.getFirstObjectInBackgroundWithBlock({ (object, error) -> Void in
-                        println("Objeto da query: \(object)")
-                        
-                        var activ = object as? Activity
-                        if (activ == nil){
-                            act.minor = 0
-                            activ = act
-                        }
-                        act.name = self.activityName.text
-                        act.host = PFUser.currentUser()!
-                        act.minor = NSNumber(integer: activ!.minor.integerValue + 1)
-                        act.major = 10
-                        PFGeoPoint.geoPointForCurrentLocationInBackground({ (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
-                            if let location = geoPoint{
-                                act.location = location
-                            }
-                            act.saveInBackgroundWithBlock({ (sucess: Bool, error) -> Void in
-                                if(sucess){
-                                    println("Saved activit on Parese:")
-                                    println(act)
-                                    
-                                    self.beaconRegion = CLBeaconRegion(proximityUUID: self.uuid, major: act.major.unsignedShortValue , minor: act.minor.unsignedShortValue, identifier: self.identifier)
-                                    
-                                    self.dataDictionary = self.beaconRegion.peripheralDataWithMeasuredPower(nil)
-                                    self.bluetoothPeripheralManager.startAdvertising(self.dataDictionary as [NSObject : AnyObject])
-                                    
-                                    self.btnAction.setTitle("Stop", forState: UIControlState.Normal)
-                                    
-                                    self.lblStatus.text = "Broadcasting..."
-                                    
-                                    self.txtMajor.enabled = false
-                                    self.txtMinor.enabled = false
-                                    
-                                    self.isBroadcasting = true
-                                }
-                            })
-                        })
-                    })
-                }else{
-                    let alert = UIAlertView(title: "You need the acitivity name", message: "Choose a name and try again", delegate: nil, cancelButtonTitle: "OK")
-                    alert.show()
-                }
+                createActivityAndStartTransmiting()
             }
         }else {
             bluetoothPeripheralManager.stopAdvertising()
@@ -111,13 +114,9 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate {
             btnAction.setTitle("Start", forState: UIControlState.Normal)
             lblStatus.text = "Stopped"
             
-            txtMajor.enabled = true
-            txtMinor.enabled = true
-            
             isBroadcasting = false
         }
     }
-    
     
     // MARK: CBPeripheralManagerDelegate method implementation
     
@@ -150,5 +149,19 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate {
         lblBTStatus.text = statusMessage
     }
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.activity.users.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "activityCell")
+        if let user = self.activity.users[indexPath.row] as? PFUser{
+            cell.textLabel?.text = user.username
+            let name: String = user["name"]! as! String
+            cell.detailTextLabel?.text = name
+        }
+        return cell
+        
+    }
 }
 

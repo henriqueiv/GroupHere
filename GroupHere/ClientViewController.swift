@@ -14,27 +14,17 @@ import Parse
 class ClientViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var btnSwitchSpotting: UIButton!
-    
     @IBOutlet weak var lblBeaconReport: UILabel!
-    
     @IBOutlet weak var lblBeaconDetails: UILabel!
-    
     @IBOutlet weak var tableView: UITableView!
     
     var beaconRegion: CLBeaconRegion!
-    
     var locationManager: CLLocationManager!
-    
     var isSearchingForBeacons = false
-    
     var lastFoundBeacon: CLBeacon! = CLBeacon()
-    
     var nearbyActivitiesArray: NSMutableArray = []
-    
     var lastProximity: CLProximity! = CLProximity.Unknown
-    
     let uuid = NSUUID(UUIDString: "F34A1A1F-500F-48FB-AFAA-9584D641D7B1")
-    
     let identifier = "br.com.henriquevalcanaia.GroupHere"
     
     override func viewDidLoad() {
@@ -54,16 +44,8 @@ class ClientViewController: UIViewController, CLLocationManagerDelegate, UITable
         beaconRegion.notifyOnEntry = true
         beaconRegion.notifyOnExit = true
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    
+
     // MARK: IBAction method implementation
-    
     @IBAction func switchSpotting(sender: AnyObject) {
         if !isSearchingForBeacons {
             locationManager.requestAlwaysAuthorization()
@@ -116,7 +98,6 @@ class ClientViewController: UIViewController, CLLocationManagerDelegate, UITable
     
     func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
         
-//        var shouldHideBeaconDetails = true
         if let foundBeacons = beacons {
             if foundBeacons.count > 0 {
                 self.nearbyActivitiesArray = []
@@ -143,11 +124,11 @@ class ClientViewController: UIViewController, CLLocationManagerDelegate, UITable
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println(error)
     }
-    
+
     func locationManager(manager: CLLocationManager!, monitoringDidFailForRegion region: CLRegion!, withError error: NSError!) {
         println(error)
     }
-    
+
     func locationManager(manager: CLLocationManager!, rangingBeaconsDidFailForRegion region: CLBeaconRegion!, withError error: NSError!) {
         println(error)
     }
@@ -165,19 +146,35 @@ class ClientViewController: UIViewController, CLLocationManagerDelegate, UITable
         if let activity = nearbyActivitiesArray[indexPath.row] as? Activity{
             cell.textLabel?.text = activity.name
             let name: String = activity.host["name"]! as! String
-            cell.detailTextLabel?.text = "Minor: \(activity.minor) Major: \(activity.major) Host: \(name) "
+            cell.detailTextLabel?.text = "Minor: \(activity.minor) Major: \(activity.major) Host: \(name)"
         }
         return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        if let activity = nearbyActivitiesArray[indexPath.row] as? Activity{
-            let array = NSArray(object: PFUser.currentUser()!)
-            activity.users = array
-            activity.saveInBackgroundWithBlock({ (sucess: Bool, error: NSError?) -> Void in
-                println("Users array salvo\(array)")
-            })
+        if (nearbyActivitiesArray.count > 0){
+            if let activity = nearbyActivitiesArray[indexPath.row] as? Activity{
+                let query = Activity.query()!
+                query.whereKey("users", equalTo: PFUser.currentUser()!)
+                query.whereKey("minor", equalTo: activity.minor)
+                query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?,error: NSError?) -> Void in
+                    
+                    
+                    
+                    if (objects?.count == 0){
+                        let array = NSArray(object: PFUser.currentUser()!)
+                        activity.users = array
+                        activity.saveInBackgroundWithBlock({ (sucess: Bool, error: NSError?) -> Void in
+                            println("Users array salvo\(array)")
+                        })
+                    }else{
+                        let alert = UIAlertView(title: "You are in this activity", message: "Wait for the host to generate the groups", delegate: nil, cancelButtonTitle: "OK")
+                        alert.show()
+                    }
+                })
+                
+            }
         }
     }
     
