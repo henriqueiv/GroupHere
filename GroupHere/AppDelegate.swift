@@ -61,6 +61,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         println("didRegisterForRemoteNotificationsWithDeviceToken")
     }
     
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        println("Error on push registering: \(error)")
+    }
+    
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         PFPush.handlePush(userInfo)
     }
