@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if (PFUser.currentUser() != nil){
+            self.updateUserDeviceToken()
             self.gotoApp()
             NSLog("Usuario logaod: %@", PFUser.currentUser()!)
         }else{
@@ -33,6 +34,7 @@ class LoginViewController: UIViewController {
             SVProgressHUD.dismiss()
             if user != nil {
                 SVProgressHUD.showSuccessWithStatus("Logado com sucesso", maskType: .Gradient)
+                self.updateUserDeviceToken()
                 self.gotoApp()
             } else {
                 SVProgressHUD.showErrorWithStatus(error?.description, maskType: .Gradient)
