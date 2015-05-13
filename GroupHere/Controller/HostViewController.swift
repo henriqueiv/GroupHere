@@ -43,6 +43,7 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate, UITable
         let query = Activity.query()
         query?.whereKey("host", equalTo: PFUser.currentUser()!)
         query?.whereKey("minor", equalTo: self.activity.minor)
+        query?.includeKey("users")
         query?.getFirstObjectInBackgroundWithBlock({ (object: PFObject?,error: NSError?) -> Void in
             self.activity = object as! Activity
             println(self.activity.users)

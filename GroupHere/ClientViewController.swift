@@ -100,16 +100,20 @@ class ClientViewController: UIViewController, CLLocationManagerDelegate, UITable
         
         if let foundBeacons = beacons {
             if foundBeacons.count > 0 {
-                self.nearbyActivitiesArray = []
                 let activity = Activity.new()
                 let query = Activity.query()
+                query?.includeKey("host")
                 query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
                     if let array = objects{
                         for object in array{
                             if let activity = object as? Activity{
                                 for beacon in foundBeacons{
                                     if ((beacon as! CLBeacon).minor.integerValue == activity.minor){
-                                        self.nearbyActivitiesArray.addObject(activity)
+                                        if(!self.nearbyActivitiesArray.containsObject(activity)){
+                                            self.nearbyActivitiesArray.addObject(activity)
+                                        }
+                                    }else{
+                                        self.nearbyActivitiesArray.removeObject(activity)
                                     }
                                 }
                             }
@@ -120,6 +124,11 @@ class ClientViewController: UIViewController, CLLocationManagerDelegate, UITable
             }
         }
     }
+    
+//    func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
+//        self.nearbyActivitiesArray.removeAllObjects()
+//        self.tableView.reloadData()
+//    }
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println(error)
@@ -135,7 +144,6 @@ class ClientViewController: UIViewController, CLLocationManagerDelegate, UITable
     
     
     //MARK - TAbleView DataSource
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return nearbyActivitiesArray.count
     }
@@ -156,23 +164,40 @@ class ClientViewController: UIViewController, CLLocationManagerDelegate, UITable
         if (nearbyActivitiesArray.count > 0){
             if let activity = nearbyActivitiesArray[indexPath.row] as? Activity{
                 let query = Activity.query()!
-                query.whereKey("users", equalTo: PFUser.currentUser()!)
+                query.whereKey("host", equalTo: activity.host)
                 query.whereKey("minor", equalTo: activity.minor)
-                query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?,error: NSError?) -> Void in
-                    
-                    
-                    
-                    if (objects?.count == 0){
-                        let array = NSArray(object: PFUser.currentUser()!)
-                        activity.users = array
-                        activity.saveInBackgroundWithBlock({ (sucess: Bool, error: NSError?) -> Void in
-                            println("Users array salvo\(array)")
-                        })
-                    }else{
-                        let alert = UIAlertView(title: "You are in this activity", message: "Wait for the host to generate the groups", delegate: nil, cancelButtonTitle: "OK")
-                        alert.show()
+                query.includeKey("users")
+                query.getFirstObjectInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
+                    if let act = object as? Activity{
+                        var mutableArray: NSMutableArray = []
+                        if (act.users.count > 0){
+                            mutableArray = NSMutableArray(array: act.users)
+                        }
+                        if(!mutableArray.containsObject(PFUser.currentUser()!)){
+                            mutableArray.addObject(PFUser.currentUser()!)
+                            act.users = mutableArray
+                            act.saveInBackground()
+                        }
                     }
                 })
+                
+                
+                
+                
+//                query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?,error: NSError?) -> Void in
+                
+//                    let mutableArray = NSMutableArray(array: objects! as NSArray)
+                    
+//                    for object in objects!{
+//                        if let act = object as? Activity{
+//                            
+//                        }
+//                    }
+                
+//                    if(!mutableArray.containsObject(PFUser.currentUser()!)){
+//                        mutableArray.addObject(PFUser.currentUser()!)
+//                    }
+//                })
                 
             }
         }
