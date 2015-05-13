@@ -43,19 +43,33 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate, UITable
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: "populateTableView", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl)
+        self.activity.minor = 0
+//        self.populateTableView()
     }
     
     func populateTableView(){
+        SVProgressHUD.showWithStatus("Searching activities", maskType: .Gradient)
         let query = Activity.query()
-        query?.whereKey("host", equalTo: PFUser.currentUser()!)
-        query?.whereKey("minor", equalTo: self.activity.minor)
-        query?.includeKey("users")
-        query?.getFirstObjectInBackgroundWithBlock({ (object: PFObject?,error: NSError?) -> Void in
-            self.activity = object as! Activity
-            println(self.activity.users)
-        })
-        tableView.reloadData()
-        self.refreshControl.endRefreshing()
+        
+        if self.activity.minor != 0{
+            query?.whereKey("host", equalTo: PFUser.currentUser()!)
+            query?.whereKey("minor", equalTo: self.activity.minor)
+            query?.includeKey("users")
+            query?.getFirstObjectInBackgroundWithBlock({ (object: PFObject?,error: NSError?) -> Void in
+                self.activity = object as! Activity
+                println(self.activity.users)
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    SVProgressHUD.dismiss()
+                    self.tableView.reloadData()
+                    self.refreshControl.endRefreshing()
+                })
+            })
+        }else{
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+            SVProgressHUD.dismiss()
+            SVProgressHUD.showErrorWithStatus("You should create an activity before look for members", maskType: .Gradient)
+        }
     }
     
     func createActivityAndStartTransmiting(){
@@ -90,6 +104,7 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate, UITable
                             self.lblStatus.text = "Broadcasting..."
                             self.isBroadcasting = true
                             SVProgressHUD.showSuccessWithStatus("Activity created with success", maskType: .Gradient)
+                            self.populateTableView()
                         }else{
                             SVProgressHUD.showErrorWithStatus(error?.description, maskType: .Gradient)
                         }
