@@ -21,6 +21,7 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate, UITable
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var stepper: UIStepper!
+    @IBOutlet weak var stepperLabel: UILabel!
     
     let uuid = NSUUID(UUIDString: "F34A1A1F-500F-48FB-AFAA-9584D641D7B1")
     let identifier = "br.com.henriquevalcanaia.GroupHere"
@@ -58,7 +59,7 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate, UITable
             query?.includeKey("users")
             query?.getFirstObjectInBackgroundWithBlock({ (object: PFObject?,error: NSError?) -> Void in
                 self.activity = object as! Activity
-                println(self.activity.users)
+//                println(self.activity.users)
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     SVProgressHUD.dismiss()
                     self.tableView.reloadData()
@@ -124,22 +125,44 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate, UITable
     }
     
     @IBAction func generateGroups(sender: AnyObject) {
-        var previousNumber: UInt32? // used in randomNumber()
         
-        func randomNumber() -> UInt32 {
-            var randomNumber = arc4random_uniform(10)
-            while previousNumber == randomNumber {
-                randomNumber = arc4random_uniform(10)
+        let shuffled = newShuffledArray(self.activity.users)
+        var j = 0
+        let groups = NSMutableArray.new()
+        let users = NSMutableArray.new()
+        
+        for i in 0 ..< self.activity.users.count{
+            users.addObject(shuffled[i])
+            j++
+            if (j == Int(stepper.value)){
+                j = 0
+                groups.addObject(users)
+                println("Gropus dentro do for: \(groups)")
+                users.removeAllObjects()
             }
-            previousNumber = randomNumber
-            return randomNumber
         }
+        println("Grupo:\(groups)")
+    }
+    
+    func newShuffledArray(array:NSArray) -> NSArray {
+        var mutableArray = array.mutableCopy() as! NSMutableArray
+        var count = mutableArray.count
+        if count>1 {
+            for var i=count-1;i>0;--i{
+                mutableArray.exchangeObjectAtIndex(i, withObjectAtIndex: Int(arc4random_uniform(UInt32(i+1))))
+            }
+        }
+        return mutableArray as NSArray
     }
     
     @IBAction func dismisKeyboard(sender: AnyObject) {
         self.view.endEditing(true)
     }
     
+    @IBAction func stepperValueChange(sender: UIStepper) {
+        let value = Int(self.stepper.value)
+        stepperLabel.text = "\(value)"
+    }
     @IBAction func switchBroadcastingState(sender: AnyObject) {
         if !isBroadcasting {
             if bluetoothPeripheralManager.state == CBPeripheralManagerState.PoweredOn {
