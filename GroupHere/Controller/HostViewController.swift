@@ -20,6 +20,7 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate, UITable
     @IBOutlet weak var lblBTStatus: UILabel!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var stepper: UIStepper!
     
     let uuid = NSUUID(UUIDString: "F34A1A1F-500F-48FB-AFAA-9584D641D7B1")
     let identifier = "br.com.henriquevalcanaia.GroupHere"
@@ -105,6 +106,19 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate, UITable
     // MARK: IBAction method implementation
     @IBAction func populate(sender: AnyObject) {
         populateTableView()
+    }
+    
+    @IBAction func generateGroups(sender: AnyObject) {
+        var previousNumber: UInt32? // used in randomNumber()
+        
+        func randomNumber() -> UInt32 {
+            var randomNumber = arc4random_uniform(10)
+            while previousNumber == randomNumber {
+                randomNumber = arc4random_uniform(10)
+            }
+            previousNumber = randomNumber
+            return randomNumber
+        }
     }
     
     @IBAction func dismisKeyboard(sender: AnyObject) {
