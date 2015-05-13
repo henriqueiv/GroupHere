@@ -29,6 +29,7 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate, UITable
     var activity = Activity.new()
     var isBroadcasting = false
     let major = 10
+    var refreshControl:UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,11 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate, UITable
         self.tableView.dataSource = self
         
         bluetoothPeripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: "populateTableView", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
     }
     
     func populateTableView(){
@@ -49,6 +55,7 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate, UITable
             println(self.activity.users)
         })
         tableView.reloadData()
+        self.refreshControl.endRefreshing()
     }
     
     func createActivityAndStartTransmiting(){
