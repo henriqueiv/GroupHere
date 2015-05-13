@@ -13,7 +13,7 @@ import CoreBluetooth
 import Parse
 import SVProgressHUD
 
-class HostViewController: UIViewController, CBPeripheralManagerDelegate, UITableViewDataSource, UITableViewDelegate {
+class HostViewController: UIViewController, CBPeripheralManagerDelegate, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate {
     
     @IBOutlet weak var btnAction: UIButton!
     @IBOutlet weak var lblStatus: UILabel!
@@ -132,16 +132,21 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate, UITable
         let users = NSMutableArray.new()
         
         for i in 0 ..< self.activity.users.count{
-            users.addObject(shuffled[i])
+            let u = shuffled[i] as! PFUser
+            users.addObject(u.username!)
             j++
-            if (j == Int(stepper.value)){
-                j = 0
-                groups.addObject(users)
-                println("Gropus dentro do for: \(groups)")
+            if (j == Int(stepper.value) || (i == self.activity.users.count-1)){
+                groups.addObject(u)
+                
+                let alert = UIAlertView(title: "Grupo \(j)", message: "\(users)", delegate: self, cancelButtonTitle: "Ok")
+                alert.show()
+//                println("Gropus dentro do for: \(groups)")
                 users.removeAllObjects()
+                j = 0
             }
         }
-        println("Grupo:\(groups)")
+//        groups.addObject(users.copy())
+//        println("Grupo:\(groups)")
     }
     
     func newShuffledArray(array:NSArray) -> NSArray {
