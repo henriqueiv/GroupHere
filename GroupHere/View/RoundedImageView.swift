@@ -14,7 +14,7 @@ class RoundedImageView: UIImageView {
     @IBInspectable var rounded: Bool = false {
         didSet {
             if rounded{
-                self.layer.cornerRadius = layer.visibleRect.height/2
+                self.layer.cornerRadius = self.layer.visibleRect.height/2
                 self.layer.masksToBounds = true
             }
         }

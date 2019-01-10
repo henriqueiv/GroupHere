@@ -39,12 +39,12 @@ class ClientViewController: UIViewController, CLLocationManagerDelegate, UITable
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
-
-        beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: identifier)
+        
+        beaconRegion = CLBeaconRegion(proximityUUID: uuid!, identifier: identifier)
         beaconRegion.notifyOnEntry = true
         beaconRegion.notifyOnExit = true
     }
-
+    
     // MARK: IBAction method implementation
     @IBAction func switchSpotting(sender: AnyObject) {
         if !isSearchingForBeacons {
@@ -69,12 +69,12 @@ class ClientViewController: UIViewController, CLLocationManagerDelegate, UITable
     }
     
     
-    func locationManager(manager: CLLocationManager!, didStartMonitoringForRegion region: CLRegion!) {
+    func locationManager(manager: CLLocationManager, didStartMonitoringForRegion region: CLRegion) {
         locationManager.requestStateForRegion(region)
     }
     
     
-    func locationManager(manager: CLLocationManager!, didDetermineState state: CLRegionState, forRegion region: CLRegion!) {
+    func locationManager(manager: CLLocationManager, didDetermineState state: CLRegionState, forRegion region: CLRegion) {
         if state == CLRegionState.Inside {
             locationManager.startRangingBeaconsInRegion(beaconRegion)
         }
@@ -84,62 +84,61 @@ class ClientViewController: UIViewController, CLLocationManagerDelegate, UITable
     }
     
     
-    func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
+    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
         lblBeaconReport.text = "Beacon in range"
         lblBeaconDetails.hidden = false
     }
     
     
-    func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
+    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
         lblBeaconReport.text = "No beacons in range"
         lblBeaconDetails.hidden = true
         
     }
     
-    func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
+    func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
         
-        if let foundBeacons = beacons {
-            if foundBeacons.count > 0 {
-                let activity = Activity.new()
-                let query = Activity.query()
-                query?.includeKey("host")
-                query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
-                    if let array = objects{
-                        for object in array{
-                            if let activity = object as? Activity{
-                                for beacon in foundBeacons{
-                                    if ((beacon as! CLBeacon).minor.integerValue == activity.minor){
-                                        if(!self.nearbyActivitiesArray.containsObject(activity)){
-                                            self.nearbyActivitiesArray.addObject(activity)
-                                        }
-                                    }else{
-                                        self.nearbyActivitiesArray.removeObject(activity)
+        let foundBeacons = beacons
+        if foundBeacons.count > 0 {
+            let activity = Activity()
+            let query = Activity.query()
+            query?.includeKey("host")
+            query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+                if let array = objects{
+                    for object in array{
+                        if let activity = object as? Activity{
+                            for beacon in foundBeacons{
+                                if ((beacon as! CLBeacon).minor.integerValue == activity.minor){
+                                    if(!self.nearbyActivitiesArray.containsObject(activity)){
+                                        self.nearbyActivitiesArray.addObject(activity)
                                     }
+                                }else{
+                                    self.nearbyActivitiesArray.removeObject(activity)
                                 }
                             }
                         }
                     }
-                    self.tableView.reloadData()
-                })
-            }
+                }
+                self.tableView.reloadData()
+            })
         }
     }
     
-//    func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
-//        self.nearbyActivitiesArray.removeAllObjects()
-//        self.tableView.reloadData()
-//    }
+    //    func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
+    //        self.nearbyActivitiesArray.removeAllObjects()
+    //        self.tableView.reloadData()
+    //    }
     
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-        println(error)
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print(error)
     }
-
-    func locationManager(manager: CLLocationManager!, monitoringDidFailForRegion region: CLRegion!, withError error: NSError!) {
-        println(error)
+    
+    func locationManager(manager: CLLocationManager, monitoringDidFailForRegion region: CLRegion?, withError error: NSError) {
+        print(error)
     }
-
-    func locationManager(manager: CLLocationManager!, rangingBeaconsDidFailForRegion region: CLBeaconRegion!, withError error: NSError!) {
-        println(error)
+    
+    func locationManager(manager: CLLocationManager, rangingBeaconsDidFailForRegion region: CLBeaconRegion, withError error: NSError) {
+        print(error)
     }
     
     
@@ -184,20 +183,20 @@ class ClientViewController: UIViewController, CLLocationManagerDelegate, UITable
                 
                 
                 
-//                query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?,error: NSError?) -> Void in
+                //                query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]?,error: NSError?) -> Void in
                 
-//                    let mutableArray = NSMutableArray(array: objects! as NSArray)
-                    
-//                    for object in objects!{
-//                        if let act = object as? Activity{
-//                            
-//                        }
-//                    }
+                //                    let mutableArray = NSMutableArray(array: objects! as NSArray)
                 
-//                    if(!mutableArray.containsObject(PFUser.currentUser()!)){
-//                        mutableArray.addObject(PFUser.currentUser()!)
-//                    }
-//                })
+                //                    for object in objects!{
+                //                        if let act = object as? Activity{
+                //
+                //                        }
+                //                    }
+                
+                //                    if(!mutableArray.containsObject(PFUser.currentUser()!)){
+                //                        mutableArray.addObject(PFUser.currentUser()!)
+                //                    }
+                //                })
                 
             }
         }

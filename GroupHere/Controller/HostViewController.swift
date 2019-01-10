@@ -28,7 +28,7 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate, UITable
     var bluetoothPeripheralManager: CBPeripheralManager!
     var dataDictionary = NSDictionary()
     var beaconRegion: CLBeaconRegion!
-    var activity = Activity.new()
+    var activity = Activity()
     var isBroadcasting = false
     let major = 10
     var refreshControl:UIRefreshControl!
@@ -150,8 +150,8 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate, UITable
     }
     
     func newShuffledArray(array:NSArray) -> NSArray {
-        var mutableArray = array.mutableCopy() as! NSMutableArray
-        var count = mutableArray.count
+        let mutableArray = array.mutableCopy() as! NSMutableArray
+        let count = mutableArray.count
         if count>1 {
             for var i=count-1;i>0;--i{
                 mutableArray.exchangeObjectAtIndex(i, withObjectAtIndex: Int(arc4random_uniform(UInt32(i+1))))
@@ -185,7 +185,7 @@ class HostViewController: UIViewController, CBPeripheralManagerDelegate, UITable
     
     // MARK: CBPeripheralManagerDelegate method implementation
     
-    func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager!) {
+    func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager) {
         var statusMessage = ""
         
         switch peripheral.state {

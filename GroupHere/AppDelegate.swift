@@ -40,11 +40,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func configNotifications(application: UIApplication){
-        let userNotificationTypes = (UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound)
+        let userNotificationTypes: UIUserNotificationType = ([UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound])
         let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
-        println("registerForRemoteNotifications")
+        print("registerForRemoteNotifications")
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
@@ -53,16 +53,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let currentInstallation = PFInstallation.currentInstallation()
         currentInstallation.setDeviceTokenFromData(deviceToken)
         currentInstallation.channels = ["global"]
-        println("didRegisterForRemoteNotificationsWithDeviceToken")
+        print("didRegisterForRemoteNotificationsWithDeviceToken")
         currentInstallation.saveInBackground()
         
         let deviceTokenString = NSString(data: deviceToken, encoding: NSUTF8StringEncoding)
         NSUserDefaults.standardUserDefaults().setObject(deviceTokenString, forKey: kKeyUserDefaultsDeviceToken)
-        println("didRegisterForRemoteNotificationsWithDeviceToken")
+        print("didRegisterForRemoteNotificationsWithDeviceToken")
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        println("Error on push registering: \(error)")
+        print("Error on push registering: \(error)")
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {

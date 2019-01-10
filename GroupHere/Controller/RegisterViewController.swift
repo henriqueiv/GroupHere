@@ -42,8 +42,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         let user = PFUser()
         user.username = tfUsername.text
         user.password = tfPassword.text
-        user.setObject(tfName.text, forKey: "name")
-        if let imageData = UIImagePNGRepresentation(self.userPicture.image){
+        user.setObject(tfName.text!, forKey: "name")
+        if let imageData = UIImagePNGRepresentation(self.userPicture.image!){
             let pictureFile = PFFile(name: user.username! + "-picture.png", data: imageData)
             user.setObject(pictureFile, forKey: "picture")
         }
@@ -62,7 +62,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                     SVProgressHUD.dismiss()
                     if error!.code == self.kPFErrorUsernameTaken{
                         SVProgressHUD.showWithStatus("Usuário já cadastrado, realizando login...", maskType: .Gradient)
-                        PFUser.logInWithUsernameInBackground(self.tfUsername.text, password:self.tfPassword.text) {
+                        PFUser.logInWithUsernameInBackground(self.tfUsername.text!, password:self.tfPassword.text!) {
                             (user: PFUser?, error: NSError?) -> Void in
                             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                 SVProgressHUD.dismiss()
@@ -84,7 +84,7 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                             SVProgressHUD.showErrorWithStatus(error?.description, maskType: .Gradient)
                         })
                     }
-                    println(error)
+                    print(error)
                 })
             }
         }
@@ -118,8 +118,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
         presentViewController(alertVC, animated: true, completion: nil)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        var chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
         userPicture.contentMode = .ScaleAspectFill //3
         userPicture.image = chosenImage //4
         dismissViewControllerAnimated(true, completion: nil) //5

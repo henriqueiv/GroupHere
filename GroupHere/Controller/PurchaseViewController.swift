@@ -32,7 +32,7 @@ class PurchaseViewController: UIViewController, SKProductsRequestDelegate, SKPay
     
     func getProductInfo(){
         if SKPaymentQueue.canMakePayments(){
-            let request = SKProductsRequest(productIdentifiers: NSSet(objects: self.productID) as Set<NSObject>)
+            let request = SKProductsRequest(productIdentifiers: NSSet(objects: self.productID) as Set<NSObject> as Set<NSObject>)
             request.delegate = self
             request.start()
         } else {
@@ -40,7 +40,7 @@ class PurchaseViewController: UIViewController, SKProductsRequestDelegate, SKPay
         }
     }
     
-    func productsRequest(request: SKProductsRequest!, didReceiveResponse response: SKProductsResponse!) {
+    func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
         var products = response.products
         if (products.count != 0){
             product = products[0] as? SKProduct
@@ -54,7 +54,7 @@ class PurchaseViewController: UIViewController, SKProductsRequestDelegate, SKPay
         products = response.invalidProductIdentifiers
         
         for product in products{
-            println("Product not found: \(product)")
+            print("Product not found: \(product)")
         }
     }
     
@@ -64,8 +64,8 @@ class PurchaseViewController: UIViewController, SKProductsRequestDelegate, SKPay
         //println("comprando")
     }
     
-    func paymentQueue(queue: SKPaymentQueue!, updatedTransactions transactions: [AnyObject]!) {
-        for transaction in transactions as![SKPaymentTransaction]{
+    func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
             switch transaction.transactionState{
             case SKPaymentTransactionState.Purchased:
                 //println("destravando")
